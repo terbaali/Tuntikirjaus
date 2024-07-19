@@ -15,7 +15,7 @@ export default function AddHoursModal() {
   /*
   const isPresented = router.canGoBack();
   {!isPresented && <Link href="../">Dismiss</Link>}
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+    <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
   */
 
   const handleAddition = async () => {

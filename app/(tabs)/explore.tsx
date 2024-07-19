@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { StyleSheet, Image, Platform } from 'react-native';
 
-//import { Collapsible } from '@/components/Collapsible';
+
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
@@ -14,6 +14,7 @@ export default function TabTwoScreen() {
       headerImage={<Ionicons size={310} name="code-slash" style={styles.headerImage} />}>
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Tähän tulee kalenteri</ThemedText>
+        
       </ThemedView>
     </ParallaxScrollView>
   );
