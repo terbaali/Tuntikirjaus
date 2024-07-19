@@ -3,6 +3,7 @@ import { View, Text, TextInput, Modal, StyleSheet, TouchableOpacity, Platform } 
 import { Link, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { storeHours } from './AsyncStorage';
 
 export default function AddHoursModal() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -17,12 +18,22 @@ export default function AddHoursModal() {
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
   */
 
+  const handleAddition = async () => {
+    const data ={
+      block: block,
+      workHours: workHours,
+      uklHours: uklHours,
+      uklHoursDescription: uklHoursDescription
+    };
+    storeHours(date, data);
+  }
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       
       
       <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.button}>
-        <Ionicons name="add-circle-outline" size={50} color="green" style={{ marginBottom: -3 }} />
+        <Ionicons name="add-circle-outline" size={60} color="green" style={{ marginBottom: -3 }} />
       </TouchableOpacity>
       <Modal
         animationType="slide"
@@ -79,7 +90,7 @@ export default function AddHoursModal() {
             </View>
 
             {uklHours > 0 && (
-              <View>
+              <View style={styles.uklInput}>
                 <Text>Urakan keskeytystuntien selitys:</Text>
                 <TextInput
                   style={[styles.input, styles.textArea]}
@@ -102,7 +113,7 @@ export default function AddHoursModal() {
               <TouchableOpacity 
                 style={[styles.actionButton, styles.saveButton]} 
                 onPress={() => {
-                  // Tallenna tiedot täällä
+                  handleAddition()
                   setModalVisible(false);
                 }}>
                   <Text style={styles.buttonText}>Tallenna</Text>
@@ -155,6 +166,9 @@ const styles = StyleSheet.create({
     padding: 5,
     marginLeft: 10,
     flex: 1,
+  },
+  uklInput: {
+    height: 100,
   },
   textArea: {
     height: 60,
